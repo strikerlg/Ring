@@ -1,0 +1,77 @@
+CREATE TABLE IF NOT EXISTS `ring_gracze` (
+  `gracz` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(24) NOT NULL,
+  `haslo` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `avatar` tinyint(4) NOT NULL DEFAULT '0',
+  `opis` varchar(100) NOT NULL,
+  `akcje` int(11) NOT NULL DEFAULT '100',
+  `akcje_max` int(11) NOT NULL DEFAULT '100',
+  `zmeczenie` int(11) NOT NULL DEFAULT '200',
+  `zmeczenie_max` int(11) NOT NULL DEFAULT '200',
+  `vip` int(11) NOT NULL DEFAULT '0',
+  `ostatnia_walka` int(11) NOT NULL DEFAULT '0',
+  `ranking` int(11) NOT NULL DEFAULT '0',
+  `boksowanie` int(11) NOT NULL DEFAULT '1',
+  `walka_parter` int(11) NOT NULL DEFAULT '1',
+  `zapasy` int(11) NOT NULL DEFAULT '1',
+  `kopanie` int(11) NOT NULL DEFAULT '1',
+  `kondycja` int(11) NOT NULL DEFAULT '1',
+  `ostatnia_akcja` int(11) NOT NULL DEFAULT '0',
+  `kasa` int(11) NOT NULL DEFAULT '1000',
+  `zbanowany` tinyint(4) NOT NULL DEFAULT '0',
+  `pracuje` int(11) NOT NULL DEFAULT '0',
+  `pracuje_godzin` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`gracz`),
+  KEY `login` (`login`,`email`),
+  KEY `ostatnia_akcja` (`ostatnia_akcja`),
+  KEY `zbanowany` (`zbanowany`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Zrzut danych tabeli `ring_gracze`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `ring_kody`
+--
+
+CREATE TABLE IF NOT EXISTS `ring_kody` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kod` varchar(40) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `gracz_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `kod` (`kod`),
+  KEY `status` (`status`,`gracz_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Zrzut danych tabeli `ring_kody`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `ring_poczta`
+--
+
+CREATE TABLE IF NOT EXISTS `ring_poczta` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `od` int(11) NOT NULL,
+  `do` int(11) NOT NULL,
+  `tytul` text NOT NULL,
+  `tresc` text NOT NULL,
+  `data` datetime NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `typ` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `od` (`od`),
+  KEY `status` (`status`),
+  KEY `do` (`do`),
+  KEY `typ` (`typ`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
